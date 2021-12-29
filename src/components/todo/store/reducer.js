@@ -8,27 +8,20 @@ export const initState = {
 
 // reducer
 export const reducer = (initState, action) => {
-  let newState = initState;
-
   switch (action.type) {
     case SET_JOB:
-      newState = { ...initState, job: action.payload };
-      break;
+      return { ...initState, job: action.payload };
 
     case ADD_JOB:
-      newState = { ...initState, jobs: [...initState.jobs, action.payload] };
-      break;
+      return { ...initState, jobs: [...initState.jobs, action.payload] };
 
     case DELETE_JOB:
       let newJobs = initState.jobs.filter(
         (job, index) => index !== action.payload
       );
-      newState = { ...initState, jobs: newJobs };
-      break;
+      return { ...initState, jobs: newJobs };
 
     default:
       throw new Error("invalid action");
   }
-
-  return newState;
 };
